@@ -40,6 +40,9 @@ const Home = () => {
     >
       <h3>Home</h3>
       <TextField
+        inputProps={{
+          'data-testid': 'nameInput'
+        }}
         name="name"
         value={user.name}
         onChange={handleInput}
@@ -58,7 +61,7 @@ const Home = () => {
         <MenuItem value="React">React</MenuItem>
         <MenuItem value="NodeJS">NodeJS</MenuItem>
       </TextField>
-      <Button variant="contained" color="primary" onClick={handleSubmit}>
+      <Button data-testid="submit" disabled={!user.name} variant="contained" color="primary" onClick={handleSubmit}>
         Submit
       </Button>
     </div>

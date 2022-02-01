@@ -1,4 +1,5 @@
-import { Button, Chip } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import { Chip } from "@mui/material";
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import MultipleChoice from "../components/MultipleChoice";
@@ -36,6 +37,14 @@ const Exam = () => {
     if (!ans) return false;
 
     return !!ans.options.find((op) => op === option);
+  };
+
+  const isQuestonAns = (qId:number) => {
+    const ans = ansList.find((a) => a.id === qId);
+
+    if (!ans) return false;
+
+    return ans.options.length > 0;
   };
 
   const handleAns = (option: string, checked?: boolean) => {
@@ -133,6 +142,7 @@ const Exam = () => {
       <h3>Exam</h3>
       {filteredQuestionList.map((q, i) => (
         <Chip
+         color={isQuestonAns(q.id)? 'error': 'default'}
           key={q.id}
           label={i + 1}
           onClick={() => handleQuestionChange(i)}
